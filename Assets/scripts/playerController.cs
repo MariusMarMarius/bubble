@@ -5,6 +5,7 @@ public class playerController : MonoBehaviour
     private Rigidbody2D rb;
 
     public float moveSpeed = 5f;
+    public float jumpPower;
 
     private bool isGrounded;
 
@@ -37,12 +38,12 @@ public class playerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
-            jump(5);
+            jump(jumpPower);
             isGrounded = false;
         }
     }
 
-    public void jump(int jumpForce)
+    public void jump(float jumpForce)
     {
         rb.AddForce(new Vector2(0,jumpForce));
     }

@@ -7,8 +7,14 @@ public class Obstacle : MonoBehaviour
     private int maxIndex = 16;
     public int nowBubble;
 
+
+    private CircleCollider2D circleCollider;
+
     void Start()
     {
+        circleCollider = GetComponent<CircleCollider2D>();
+
+
         AssignRandomSprite();  // 分配随机图片
         SetRandomSize();       // 设置随机大小
     }
@@ -35,7 +41,9 @@ public class Obstacle : MonoBehaviour
     void SetRandomSize()
     {
         float randomSize = Random.Range(0.3f, 1.0f); // 设定大小范围
-        transform.localScale = new Vector3(randomSize, randomSize, 1f); // 设置随机缩放
+        transform.localScale = new Vector2(randomSize, randomSize); // 设置随机缩放
+        //circleCollider.radius = transform.localScale.x *2;
+        circleCollider.radius = 1.22f;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
