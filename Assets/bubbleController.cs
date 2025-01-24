@@ -14,16 +14,13 @@ public class bubbleController : MonoBehaviour
         
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("insidee");
-
-        // Überprüfen, ob der Spieler die "Bubble" berührt hat
-        if (other.CompareTag("Player"))
+        if (collision.CompareTag("Player"))
         {
-            Debug.Log("Bubble wurde vom Spieler getroffen!");
+            Vector2 pushDirection = (collision.transform.position - transform.position).normalized;
 
-            other.GetComponent<playerController>().jump(8);
+            collision.GetComponent<playerController>().bubbleKnock(pushDirection, 5f);
 
             Destroy(gameObject); // Zerstört die Bubble
         }
