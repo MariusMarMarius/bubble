@@ -7,7 +7,9 @@ public class playerController : MonoBehaviour
     public float moveSpeed = 5f;
     public float jumpPower;
 
-    private bool isGrounded;
+    public bool isGrounded;
+    public bool canDoubleJump;
+
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -36,16 +38,24 @@ public class playerController : MonoBehaviour
         
 
 
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+        if (Input.GetKeyDown(KeyCode.Space) )
         {
             jump(jumpPower);
-            isGrounded = false;
         }
     }
 
     public void jump(float jumpForce)
     {
-        rb.AddForce(new Vector2(0,jumpForce));
+        if (!isGrounded && !canDoubleJump)
+        {
+            return;
+        }
+        if (!isGrounded)
+        {
+            canDoubleJump = false;
+        }
+        rb.linearVelocity = Vector2.zero;
+        rb.AddForce(new Vector2(0, jumpForce));
     }
 
     public void bubbleKnock(Vector2 direction, float pushForce)
@@ -60,6 +70,19 @@ public class playerController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        isGrounded = true;
+        if (collision.gameObject.CompareTag("Platform"))
+        {
+            isGrounded = true;  
+            canDoubleJump = true;
+        }
+        
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Platform"))
+        {
+            isGrounded = false;
+        }
     }
 }
