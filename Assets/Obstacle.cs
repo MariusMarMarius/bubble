@@ -34,7 +34,7 @@ public class Obstacle : MonoBehaviour
     // 随机设置障碍物的大小
     void SetRandomSize()
     {
-        float randomSize = Random.Range(1.0f, 2.0f); // 设定大小范围
+        float randomSize = Random.Range(0.3f, 1.0f); // 设定大小范围
         transform.localScale = new Vector3(randomSize, randomSize, 1f); // 设置随机缩放
     }
 }

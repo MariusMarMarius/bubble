@@ -11,19 +11,22 @@ public class ObstacleSpawner : MonoBehaviour
 
     void Update()
     {
+        // 读取 GameManager 中的分数
+        int score = GameManager.Instance.score;
+
+        // 根据分数调整障碍物生成间隔
+        float difficultyFactor = Mathf.Clamp(score / 100f, 0f, 1f); // 难度因子：分数越高，难度越大（最大为1）
+        float newMinRate = Mathf.Lerp(minSpawnRate, endSpawnRate, difficultyFactor); // 最小间隔随着分数增大而减少
+        float newMaxRate = Mathf.Lerp(maxSpawnRate, endSpawnRate, difficultyFactor); // 最大间隔随着分数增大而减少
+
         if (Time.time >= nextSpawnTime)
         {
             SpawnObstacle();
 
-            // **游戏越久，障碍物生成越快**
-            float difficultyFactor = Mathf.Clamp(Time.time / 60f, 0f, 1f); // 逐渐增加难度（最大 1）
-            float newMinRate = Mathf.Lerp(minSpawnRate, endSpawnRate, difficultyFactor); // 最小间隔从 1.0 降到 0.5
-            float newMaxRate = Mathf.Lerp(maxSpawnRate, endSpawnRate, difficultyFactor); // 最大间隔从 3.0 降到 1.0
-
+            // 设置下次生成时间
             nextSpawnTime = Time.time + Random.Range(newMinRate, newMaxRate);
         }
     }
-
 
     void SpawnObstacle()
     {
@@ -46,8 +49,4 @@ public class ObstacleSpawner : MonoBehaviour
         // 生成障碍物
         Instantiate(chosenPrefab, chosenSpawnPoint.position, Quaternion.identity);
     }
-  
 }
-
-
-
