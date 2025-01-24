@@ -72,8 +72,11 @@ public class playerController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Platform"))
         {
-            isGrounded = true;  
-            canDoubleJump = true;
+            if (collision.transform.position.y < transform.position.y)
+            {
+                isGrounded = true;
+                canDoubleJump = true;
+            }
         }
         
     }
