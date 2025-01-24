@@ -6,6 +6,7 @@ public class ObstacleSpawner : MonoBehaviour
     public Transform[] spawnPoints; // 生成点
     public float minSpawnRate = 1.0f; // 最小生成间隔
     public float maxSpawnRate = 3.0f; // 最大生成间隔
+    public float endSpawnRate = 0.005f;
     private float nextSpawnTime;
 
     void Update()
@@ -16,8 +17,8 @@ public class ObstacleSpawner : MonoBehaviour
 
             // **游戏越久，障碍物生成越快**
             float difficultyFactor = Mathf.Clamp(Time.time / 60f, 0f, 1f); // 逐渐增加难度（最大 1）
-            float newMinRate = Mathf.Lerp(1.0f, 0.5f, difficultyFactor); // 最小间隔从 1.0 降到 0.5
-            float newMaxRate = Mathf.Lerp(3.0f, 1.0f, difficultyFactor); // 最大间隔从 3.0 降到 1.0
+            float newMinRate = Mathf.Lerp(minSpawnRate, endSpawnRate, difficultyFactor); // 最小间隔从 1.0 降到 0.5
+            float newMaxRate = Mathf.Lerp(maxSpawnRate, endSpawnRate, difficultyFactor); // 最大间隔从 3.0 降到 1.0
 
             nextSpawnTime = Time.time + Random.Range(newMinRate, newMaxRate);
         }

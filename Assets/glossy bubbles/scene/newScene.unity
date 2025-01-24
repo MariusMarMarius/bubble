@@ -158,6 +158,7 @@ MonoBehaviour:
   - {fileID: 1322871268}
   minSpawnRate: 1
   maxSpawnRate: 3
+  endSpawnRate: 0.005
 --- !u!4 &18193332
 Transform:
   m_ObjectHideFlags: 0
