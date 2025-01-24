@@ -2,8 +2,9 @@ using UnityEngine;
 
 public class playerController : MonoBehaviour
 {
-    Rigidbody2D rb;
-    public float moveSpeed = 8f;
+    private Rigidbody2D rb;
+
+    public float moveSpeed = 5f;
 
     private bool isGrounded;
 
@@ -17,20 +18,43 @@ public class playerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float moveInput = Input.GetAxis("Horizontal");
-        rb.linearVelocity = new Vector2(moveInput * moveSpeed, rb.linearVelocity.y);
+        inputCheck();
+    }
 
-        // Springen, wenn die Leertaste gedrückt wird und der Spieler am Boden ist
+
+    void inputCheck()
+    {
+        float moveInput = Input.GetAxis("Horizontal");
+        Vector2 movement = new Vector2(moveInput, 0);
+
+        
+        if (moveInput > 0 && rb.linearVelocity.x < moveSpeed || moveInput < 0 && rb.linearVelocity.x > -moveSpeed)
+        {
+            rb.AddForce(movement * moveSpeed * Time.deltaTime * 2);
+        }
+        
+
+
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
-            jump(10);
+            jump(5);
             isGrounded = false;
         }
     }
 
     public void jump(int jumpForce)
     {
-        rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
+        rb.AddForce(new Vector2(0,jumpForce));
+    }
+
+    public void bubbleKnock(Vector2 direction, float pushForce)
+    {
+        Debug.Log(direction);
+        Debug.Log(pushForce);
+        Debug.Log(direction * pushForce);
+        rb.linearVelocity = Vector2.zero;
+        
+        rb.AddForce(direction * pushForce);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
