@@ -37,4 +37,16 @@ public class Obstacle : MonoBehaviour
         float randomSize = Random.Range(0.3f, 1.0f); // 设定大小范围
         transform.localScale = new Vector3(randomSize, randomSize, 1f); // 设置随机缩放
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            Vector2 pushDirection = (collision.transform.position - transform.position).normalized;
+
+            collision.GetComponent<playerController>().bubbleKnock(pushDirection, 5f);
+
+            Destroy(gameObject); // Zerstört die Bubble
+        }
+    }
 }

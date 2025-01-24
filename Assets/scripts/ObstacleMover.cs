@@ -15,11 +15,6 @@ public class ObstacleMover : MonoBehaviour
         // 获取 Rigidbody2D 组件
         rb = GetComponent<Rigidbody2D>();
 
-        // 禁用重力影响
-        if (rb != null)
-        {
-            rb.gravityScale = 0;
-        }
 
         // 从 speedOptions 中随机选择一个速度
         speed = speedOptions[Random.Range(0, speedOptions.Length)];
