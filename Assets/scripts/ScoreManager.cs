@@ -22,4 +22,8 @@ public class ScoreManager : MonoBehaviour
         // 从 GameManager 获取当前的分数
         scoreText.text = "Score: " + GameManager.Instance.score;
     }
+    public void SetGameOverScore()
+    {
+        scoreText.text = "Game Over";
+    }
 }
