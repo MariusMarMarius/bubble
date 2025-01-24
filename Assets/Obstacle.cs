@@ -2,29 +2,32 @@ using UnityEngine;
 
 public class Obstacle : MonoBehaviour
 {
-    private string imagePath = "glossy bubbles/img/"; // ×ÊÔ´Â·¾¶£¨Ïà¶Ô Resources ÎÄ¼ş¼Ğ£©
-    private int minIndex = 1;  // ×îĞ¡Í¼Æ¬±àºÅ
-    private int maxIndex = 16; // ×î´óÍ¼Æ¬±àºÅ
+    private string imagePath = "glossy bubbles/img/";
+    private int minIndex = 1;
+    private int maxIndex = 16;
     public int nowBubble;
+
+    private Rigidbody2D rb;
+    public float minSpeed = 2.0f; // ï¿½ï¿½Ğ¡ï¿½Ù¶ï¿½
+    public float maxSpeed = 5.0f; // ï¿½ï¿½ï¿½ï¿½Ù¶ï¿½
 
     void Start()
     {
         AssignRandomSprite();
+        AssignRandomSpeed();
 
-        // **Ëæ»ú´óĞ¡£º1.0f ~ 2.0f**
-        float randomSize = Random.Range(1.0f, 2.0f);
-        transform.localScale = new Vector3(randomSize, randomSize, 1f);
+        // éšæœºè®¾ç½®éšœç¢ç‰©å¤§å°
+        float randomSize = Random.Range(1.0f, 2.0f); // éšæœºèŒƒå›´ä¸º 1.0 ~ 2.0
+        transform.localScale = new Vector3(randomSize, randomSize, 1f); // è®¾ç½®å¤§å°
     }
 
 
     void AssignRandomSprite()
     {
-        // **Ëæ»úÑ¡ÔñÒ»¸öÍ¼Æ¬**
         int randomIndex = Random.Range(minIndex, maxIndex + 1);
         nowBubble = randomIndex;
-        string fullPath = imagePath + randomIndex; // ²»ĞèÒª¼Ó .png ºó×º
+        string fullPath = imagePath + randomIndex;
 
-        // **¼ÓÔØ PNG ×÷Îª Sprite**
         Sprite newSprite = Resources.Load<Sprite>(fullPath);
         if (newSprite != null)
         {
@@ -32,7 +35,20 @@ public class Obstacle : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning($"Obstacle: Í¼Æ¬¼ÓÔØÊ§°Ü£¡Â·¾¶: {fullPath}");
+            Debug.LogWarning($"Obstacle: Í¼Æ¬ï¿½ï¿½ï¿½ï¿½Ê§ï¿½Ü£ï¿½Â·ï¿½ï¿½: {fullPath}");
         }
+    }
+
+    void AssignRandomSpeed()
+    {
+        rb = GetComponent<Rigidbody2D>();
+        if (rb == null)
+        {
+            Debug.LogWarning("Obstacle: æ²¡æœ‰ Rigidbody2Dï¼Œæ— æ³•è®¾ç½®é€Ÿåº¦ï¼");
+            return;
+        }
+
+        float randomSpeed = Random.Range(minSpeed, maxSpeed);
+        rb.linearVelocity = new Vector2(-randomSpeed, 0f); // å‘å·¦ç§»åŠ¨
     }
 }
