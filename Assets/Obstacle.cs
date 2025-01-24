@@ -2,26 +2,18 @@ using UnityEngine;
 
 public class Obstacle : MonoBehaviour
 {
-    private string imagePath = "glossy bubbles/img/";
+    private string imagePath = "glossy bubbles/img/"; // 图片路径
     private int minIndex = 1;
     private int maxIndex = 16;
     public int nowBubble;
 
-    private Rigidbody2D rb;
-    public float minSpeed = 2.0f; // ��С�ٶ�
-    public float maxSpeed = 5.0f; // ����ٶ�
-
     void Start()
     {
-        AssignRandomSprite();
-        AssignRandomSpeed();
-
-        // 随机设置障碍物大小
-        float randomSize = Random.Range(1.0f, 2.0f); // 随机范围为 1.0 ~ 2.0
-        transform.localScale = new Vector3(randomSize, randomSize, 1f); // 设置大小
+        AssignRandomSprite();  // 分配随机图片
+        SetRandomSize();       // 设置随机大小
     }
 
-
+    // 随机分配图片
     void AssignRandomSprite()
     {
         int randomIndex = Random.Range(minIndex, maxIndex + 1);
@@ -35,20 +27,14 @@ public class Obstacle : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning($"Obstacle: ͼƬ����ʧ�ܣ�·��: {fullPath}");
+            Debug.LogWarning($"Obstacle: 图片加载失败！路径: {fullPath}");
         }
     }
 
-    void AssignRandomSpeed()
+    // 随机设置障碍物的大小
+    void SetRandomSize()
     {
-        rb = GetComponent<Rigidbody2D>();
-        if (rb == null)
-        {
-            Debug.LogWarning("Obstacle: 没有 Rigidbody2D，无法设置速度！");
-            return;
-        }
-
-        float randomSpeed = Random.Range(minSpeed, maxSpeed);
-        rb.linearVelocity = new Vector2(-randomSpeed, 0f); // 向左移动
+        float randomSize = Random.Range(1.0f, 2.0f); // 设定大小范围
+        transform.localScale = new Vector3(randomSize, randomSize, 1f); // 设置随机缩放
     }
 }

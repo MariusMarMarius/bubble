@@ -103,8 +103,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nowBubble: 0
-  minSpeed: 2
-  maxSpeed: 5
 --- !u!114 &5294446065066623580
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -117,8 +115,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84c4645f29285ab4e96a36cb3314c679, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  minSpeed: 20
+  maxSpeed: 25
   destroyX: -15
+  acceleration: 1
 --- !u!50 &7986349965337680735
 Rigidbody2D:
   serializedVersion: 5

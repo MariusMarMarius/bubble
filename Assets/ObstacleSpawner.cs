@@ -6,7 +6,7 @@ public class ObstacleSpawner : MonoBehaviour
     public Transform[] spawnPoints; // 生成点
     public float minSpawnRate = 1.0f; // 最小生成间隔
     public float maxSpawnRate = 3.0f; // 最大生成间隔
-    public float endSpawnRate = 0.005f;
+    public float endSpawnRate = 0.5f;
     private float nextSpawnTime;
 
     void Update()
