@@ -67,3 +67,13 @@ public class GameManager : MonoBehaviour
         score += value;
     }
 }
+
+
+public enum GameplayColor
+{
+    NONE,
+    RED,
+    BLUE,
+    GREEN,
+    YELLOW
+};

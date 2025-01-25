@@ -47,6 +47,7 @@ public class BubbleSpawner : MonoBehaviour
         Transform chosenSpawnPoint = spawnPoints[spawnIndex];
 
         // …˙≥…’œ∞≠ŒÔ
-        Instantiate(chosenPrefab, chosenSpawnPoint.position, Quaternion.identity);
+        GameObject newBubble = Instantiate(chosenPrefab, chosenSpawnPoint.position, Quaternion.identity);
+
     }
 }

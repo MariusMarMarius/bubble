@@ -32,7 +32,7 @@ public class PlattformManager : MonoBehaviour
 
         if (chosenPrefab == null)
         {
-            Debug.LogWarning("SpawnObstacle: 选中的预制体为空，跳过生成。");
+            Debug.LogWarning("SpawnObstacle: 选中 的预制体为空，跳过生成。");
             return;
         }
 
