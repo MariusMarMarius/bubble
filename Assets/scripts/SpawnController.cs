@@ -44,7 +44,7 @@ public class SpawnController : MonoBehaviour
             } 
             else
             {
-                SpawnPlatform();
+                //SpawnPlatform();
             }
 
             nextSpawnTime = Time.time + Random.Range(newMinRate, newMaxRate);
