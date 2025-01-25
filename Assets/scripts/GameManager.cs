@@ -14,7 +14,6 @@ public class GameManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            //DontDestroyOnLoad(gameObject); // 防止 GameManager 在切换场景时被销毁
         }
         else
         {
