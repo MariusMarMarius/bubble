@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;  // 如果你需要控制按钮
 
 public class PauseManager : MonoBehaviour
 {
@@ -39,5 +38,12 @@ public class PauseManager : MonoBehaviour
 
         // 加载 Start 场景
         SceneManager.LoadScene("start menu");  // 确保场景名称与实际一致
+    }
+    public void RetryGame()
+    {
+        Time.timeScale = 1f;
+
+        // 加载 Start 场景
+        SceneManager.LoadScene("newscene");  // 确保场景名称与实际一致
     }
 }
