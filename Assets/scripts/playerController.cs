@@ -11,6 +11,9 @@ public class playerController : MonoBehaviour
     public bool canDoubleJump;
 
 
+    public GameManager gameManager;
+
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -54,15 +57,12 @@ public class playerController : MonoBehaviour
         {
             canDoubleJump = false;
         }
-        rb.linearVelocity = Vector2.zero;
+        rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0);
         rb.AddForce(new Vector2(0, jumpForce));
     }
 
     public void bubbleKnock(Vector2 direction, float pushForce)
     {
-        Debug.Log(direction);
-        Debug.Log(pushForce);
-        Debug.Log(direction * pushForce);
         rb.linearVelocity = Vector2.zero;
         
         rb.AddForce(direction * pushForce);
@@ -78,7 +78,6 @@ public class playerController : MonoBehaviour
                 canDoubleJump = true;
             }
         }
-        
     }
 
     private void OnCollisionExit2D(Collision2D collision)
@@ -86,6 +85,18 @@ public class playerController : MonoBehaviour
         if (collision.gameObject.CompareTag("Platform"))
         {
             isGrounded = false;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+
+        Debug.Log("TRIR");
+        if (collision.CompareTag("Collectable"))
+        {
+            Debug.Log("DDDD");
+            Destroy(collision.gameObject);
+            gameManager.coinCollected();
         }
     }
 }

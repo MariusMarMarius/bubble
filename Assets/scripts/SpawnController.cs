@@ -19,6 +19,10 @@ public class SpawnController : MonoBehaviour
     //private float PnextSpawnTime;
 
 
+    [Header("Coin")]
+    public GameObject coinPrefab;
+
+
 
     private int score;
 

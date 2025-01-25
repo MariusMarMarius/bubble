@@ -9,6 +9,9 @@ public class GameManager : MonoBehaviour
 
     private float timeSinceLastScoreIncrease = 0f;
 
+
+    public int coins;
+
     void Awake()
     {
         if (Instance == null)
@@ -65,6 +68,12 @@ public class GameManager : MonoBehaviour
     public void IncreaseScore(int value)
     {
         score += value;
+    }
+
+    public void coinCollected()
+    {
+        coins++;
+        Debug.Log(coins);
     }
 }
 

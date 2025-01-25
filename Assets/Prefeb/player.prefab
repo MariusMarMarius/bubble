@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4629089912346510865}
   - component: {fileID: 5089147484073556303}
   - component: {fileID: 8354254704917619845}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -179,3 +179,4 @@ MonoBehaviour:
   jumpPower: 5
   isGrounded: 0
   canDoubleJump: 1
+  gameManager: {fileID: 0}
