@@ -130,7 +130,7 @@ GameObject:
   - component: {fileID: 18193332}
   - component: {fileID: 18193331}
   m_Layer: 0
-  m_Name: ObstacleManager
+  m_Name: BubbleManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -148,7 +148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a2e7672bc9b90d4190f83562c6a3e82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  obstaclePrefabs:
+  bubblePrefabs:
   - {fileID: 2129493507192002605, guid: a3e58ab641b7e114a95b442a938a18be, type: 3}
   spawnPoints:
   - {fileID: 489142751}
