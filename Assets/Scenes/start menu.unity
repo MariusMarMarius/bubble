@@ -584,6 +584,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 930899713}
+  - component: {fileID: 930899714}
   m_Layer: 0
   m_Name: StartMenu
   m_TagString: Untagged
@@ -607,6 +608,22 @@ Transform:
   - {fileID: 1439671012}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &930899714
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 930899712}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d69d4b49db407b45b372b70fe0e4ab2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  difficultyBoard: {fileID: 1329882715}
+  buttonDifficultyUp: {fileID: 574388284}
+  buttonDifficultyDown: {fileID: 1788248591}
+  startButton: {fileID: 1999681571}
 --- !u!1 &1243347993
 GameObject:
   m_ObjectHideFlags: 0
@@ -1552,7 +1569,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
+        m_CallState: 0
 --- !u!114 &1999681572
 MonoBehaviour:
   m_ObjectHideFlags: 0
