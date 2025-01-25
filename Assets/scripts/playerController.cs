@@ -90,6 +90,18 @@ public class playerController : MonoBehaviour
                 isGrounded = true;
                 canDoubleJump = true;
             }
+            AudioClip landenSound = Resources.Load<AudioClip>("voice/landen");
+            AudioSource audioSource = this.gameObject.AddComponent<AudioSource>();
+            if (landenSound != null)
+            {
+                audioSource.clip = landenSound;
+                audioSource.Play();
+                Debug.Log("Landen Voice played");
+            }
+            else
+            {
+                Debug.LogWarning("Splash sound not found in Resources/voice folder!");
+            }
         }
     }
 
