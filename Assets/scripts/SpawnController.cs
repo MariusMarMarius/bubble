@@ -14,10 +14,9 @@ public class SpawnController : MonoBehaviour
 
     [Header("PlatformSachen")]
     public GameObject[] obstaclePrefabs; // 障碍物预制体数组
-    public Transform[] PspawnPoints; // 生成点
-    public float PminSpawnRate = 1.0f; // 最小生成间隔
-    public float PmaxSpawnRate = 3.0f; // 最大生成间隔
-    private float PnextSpawnTime;
+    //public float PminSpawnRate = 1.0f; // 最小生成间隔
+    //public float PmaxSpawnRate = 3.0f; // 最大生成间隔
+    //private float PnextSpawnTime;
 
 
 
@@ -33,16 +32,24 @@ public class SpawnController : MonoBehaviour
 
         if (Time.time >= nextSpawnTime)
         {
-            SpawnBubble();
+            int r = Random.Range(0, 100);
 
-            // 设置下次生成时间
+            if (r <= 50)
+            {
+                SpawnBubble();
+            } 
+            else
+            {
+                SpawnPlatform();
+            }
+
             nextSpawnTime = Time.time + Random.Range(newMinRate, newMaxRate);
         }
 
 
 
 
-
+        /*
         if (Time.time >= PnextSpawnTime)
         {
             SpawnPlatform();
@@ -50,6 +57,7 @@ public class SpawnController : MonoBehaviour
             // 设置下次生成时间
             PnextSpawnTime = Time.time + Random.Range(PminSpawnRate, PmaxSpawnRate);
         }
+        */
     }
 
     void SpawnBubble()
