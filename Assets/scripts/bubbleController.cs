@@ -22,7 +22,10 @@ public class bubbleController : MonoBehaviour
 
             collision.GetComponent<playerController>().bubbleKnock(pushDirection, 5f);
 
+            
             Destroy(gameObject); // Zerstört die Bubble
         }
     }
+
+
 }

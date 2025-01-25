@@ -53,8 +53,34 @@ public class Obstacle : MonoBehaviour
             Vector2 pushDirection = (collision.transform.position - transform.position).normalized;
 
             collision.GetComponent<playerController>().bubbleKnock(pushDirection, 5f);
-
+            //new effect
+            SpawnSplashEffect();
             Destroy(gameObject); // Zerstört die Bubble
         }
     }
+    //Bubble splash effect
+    void SpawnSplashEffect()
+    {
+        // 从 Resources 目录加载图片并创建 Sprite
+        Sprite splashSprite = Resources.Load<Sprite>("splash");
+        if (splashSprite != null)
+        {
+            GameObject splashEffect = new GameObject("BubbleSplash");
+            SpriteRenderer renderer = splashEffect.AddComponent<SpriteRenderer>();
+            renderer.sprite = splashSprite;
+
+            splashEffect.transform.position = transform.position; // 设置位置
+
+            // 让 splashEffect 的大小与 Obstacle 的大小一致
+            splashEffect.transform.localScale = transform.localScale/2;
+
+            Destroy(splashEffect, 2f); // 2 秒后销毁
+        }
+        else
+        {
+            Debug.LogWarning("Splash sprite not found in Resources folder!");
+        }
+    }
+
+
 }
