@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ObstacleMover : MonoBehaviour
+public class BubbleMover : MonoBehaviour
 {
     public float[] speedOptions = { 2.0f, 5.0f, 10.0f, 20.0f }; // 固定的速度选项
     private float speed;           // 当前速度

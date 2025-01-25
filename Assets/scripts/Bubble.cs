@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Obstacle : MonoBehaviour
+public class Bubble : MonoBehaviour
 {
     private string imagePath = "glossy bubbles/img/"; // 图片路径
     private int minIndex = 1;
@@ -55,6 +55,7 @@ public class Obstacle : MonoBehaviour
             collision.GetComponent<playerController>().bubbleKnock(pushDirection, 5f);
             //new effect
             SpawnSplashEffect();
+            GameManager.Instance.IncreaseScore(5);
             Destroy(gameObject); // Zerstört die Bubble
         }
     }
@@ -74,12 +75,14 @@ public class Obstacle : MonoBehaviour
             // 让 splashEffect 的大小与 Obstacle 的大小一致
             splashEffect.transform.localScale = transform.localScale/2;
 
+
             Destroy(splashEffect, 2f); // 2 秒后销毁
         }
         else
         {
             Debug.LogWarning("Splash sprite not found in Resources folder!");
         }
+        
     }
 
 
