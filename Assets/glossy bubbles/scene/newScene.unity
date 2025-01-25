@@ -409,7 +409,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0.66
+  m_EdgeRadius: 0
 --- !u!4 &437201464
 Transform:
   m_ObjectHideFlags: 0
@@ -420,7 +420,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -600.23267, y: -310.92633, z: 2.3916614}
-  m_LocalScale: {x: 20, y: 10, z: 1}
+  m_LocalScale: {x: 30, y: 15, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2111104276}
@@ -685,6 +685,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5089147484073556303, guid: 318fa0a24eefcc74b9084cb954836149, type: 3}
       propertyPath: m_BodyType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354254704917619845, guid: 318fa0a24eefcc74b9084cb954836149, type: 3}
+      propertyPath: jumpPower
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354254704917619845, guid: 318fa0a24eefcc74b9084cb954836149, type: 3}
+      propertyPath: canDoubleJump
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

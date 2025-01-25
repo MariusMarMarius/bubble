@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Bubble
   - Platform
+  - GameBoard
   layers:
   - Default
   - TransparentFX

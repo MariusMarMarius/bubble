@@ -1,29 +1,32 @@
+using TMPro;
 using UnityEngine;
-using TMPro;  // 引入 TextMeshPro 命名空间
 
 public class ScoreManager : MonoBehaviour
 {
-    public TextMeshProUGUI scoreText;   // 用来显示分数的 TextMeshPro 组件
+    public TextMeshProUGUI scoreText;
+    private bool isGameOver = false;  // 标志游戏是否结束
 
     void Start()
     {
-        // 初始化显示的分数
         UpdateScoreText();
     }
 
     void Update()
     {
-        // 更新显示的分数
-        UpdateScoreText();
+        if (!isGameOver)  // 只有在游戏未结束时才更新分数
+        {
+            UpdateScoreText();
+        }
     }
 
     void UpdateScoreText()
     {
-        // 从 GameManager 获取当前的分数
         scoreText.text = "Score: " + GameManager.Instance.score;
     }
+
     public void SetGameOverScore()
     {
+        isGameOver = true;  // 标记游戏结束
         scoreText.text = "Game Over";
     }
 }
