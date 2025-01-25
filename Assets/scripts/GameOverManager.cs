@@ -38,9 +38,20 @@ public class GameOverManager : MonoBehaviour
         // 检查触碰的对象是否是 Player
         if (other.CompareTag("Player"))
         {
-            // 设置 GameManager 的 Score 为 "Game Over"
+            AudioClip dieSound = Resources.Load<AudioClip>("voice/die");
+            AudioSource audioSource = this.gameObject.AddComponent<AudioSource>();
+            if (dieSound != null)
+            {
+                audioSource.clip = dieSound;
+                audioSource.Play();
+                Debug.Log("die Voice played");
+            }
+            else
+            {
+                Debug.LogWarning("Splash sound not found in Resources/voice folder!");
+            }
             ToggleGameOver();
-            //scoreManager.SetGameOverScore();
+            
             
 
             // 停止游戏，可以通过暂停游戏或直接结束游戏来实现

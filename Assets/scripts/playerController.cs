@@ -9,6 +9,7 @@ public class playerController : MonoBehaviour
 
     public bool isGrounded;
     public bool canDoubleJump;
+    
 
 
     public GameManager gameManager;
@@ -49,6 +50,7 @@ public class playerController : MonoBehaviour
 
     public void jump(float jumpForce)
     {
+        AudioClip jumpSound = Resources.Load<AudioClip>("voice/jump");
         if (!isGrounded && !canDoubleJump)
         {
             return;
@@ -56,6 +58,17 @@ public class playerController : MonoBehaviour
         if (!isGrounded)
         {
             canDoubleJump = false;
+        }
+        AudioSource audioSource = this.gameObject.AddComponent<AudioSource>();
+        if (jumpSound != null)
+        {
+            audioSource.clip = jumpSound;
+            audioSource.Play();
+            Debug.Log("Jump Voice played");
+        }
+        else
+        {
+            Debug.LogWarning("Splash sound not found in Resources/voice folder!");
         }
         rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0);
         rb.AddForce(new Vector2(0, jumpForce));

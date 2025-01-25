@@ -75,6 +75,8 @@ public class Bubble : MonoBehaviour
     {
         // 从 Resources 目录加载图片并创建 Sprite
         Sprite splashSprite = Resources.Load<Sprite>("splash");
+        AudioClip splashSound = Resources.Load<AudioClip>("voice/bubbleSplash"); // 加载音效
+
         if (splashSprite != null)
         {
             GameObject splashEffect = new GameObject("BubbleSplash");
@@ -82,10 +84,20 @@ public class Bubble : MonoBehaviour
             renderer.sprite = splashSprite;
 
             splashEffect.transform.position = transform.position; // 设置位置
+            splashEffect.transform.localScale = transform.localScale / 2; // 缩放
 
-            // 让 splashEffect 的大小与 Obstacle 的大小一致
-            splashEffect.transform.localScale = transform.localScale/2;
-
+            // 添加音频组件并播放音效
+            AudioSource audioSource = splashEffect.AddComponent<AudioSource>();
+            if (splashSound != null)
+            {
+                audioSource.clip = splashSound;
+                audioSource.Play();
+                Debug.Log("Voice played");
+            }
+            else
+            {
+                Debug.LogWarning("Splash sound not found in Resources/voice folder!");
+            }
 
             Destroy(splashEffect, 2f); // 2 秒后销毁
         }
@@ -93,8 +105,8 @@ public class Bubble : MonoBehaviour
         {
             Debug.LogWarning("Splash sprite not found in Resources folder!");
         }
-        
     }
+
 
 
 }
