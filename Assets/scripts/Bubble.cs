@@ -3,13 +3,29 @@ using UnityEngine;
 public class Bubble : MonoBehaviour
 {
     private string spritePath = "glossy bubbles/img/"; // 图片路径
-    private int minIndex = 1;
-    private int maxIndex = 16;
     public int nowBubble;
 
     public GameplayColor color; 
 
     private CircleCollider2D circleCollider;
+
+
+
+
+    public float[] speedOptions = { 2.0f, 5.0f, 10.0f, 20.0f }; // 固定的速度选项
+    private float speed;           // 当前速度
+
+    public float destroyX = -15f;  // 超出这个位置销毁
+
+    private void Start()
+    {
+        speed = speedOptions[Random.Range(0, speedOptions.Length)];
+    }
+
+    private void Update()
+    {
+        transform.position += Vector3.left * speed * Time.deltaTime;
+    }
 
     public void Setup(GameplayColor c, float s)
     {

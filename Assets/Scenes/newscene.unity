@@ -2186,10 +2186,18 @@ PrefabInstance:
       propertyPath: m_BodyType
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5089147484073556303, guid: 318fa0a24eefcc74b9084cb954836149, type: 3}
+      propertyPath: m_Constraints
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 8354254704917619845, guid: 318fa0a24eefcc74b9084cb954836149, type: 3}
       propertyPath: jumpPower
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 8354254704917619845, guid: 318fa0a24eefcc74b9084cb954836149, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 2111104275}
     - target: {fileID: 8354254704917619845, guid: 318fa0a24eefcc74b9084cb954836149, type: 3}
       propertyPath: canDoubleJump
       value: 0
@@ -3033,6 +3041,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Plattform
       objectReference: {fileID: 0}
+    - target: {fileID: 6506092156464000830, guid: 6bc754d257072534b980bb2e5e720c6a, type: 3}
+      propertyPath: speed
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 9117099002603267635, guid: 6bc754d257072534b980bb2e5e720c6a, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.3
@@ -3215,6 +3227,7 @@ MonoBehaviour:
   score: 0
   difficulty: 1
   scoreIncreaseRate: 1
+  coins: 0
 --- !u!4 &2111104276
 Transform:
   m_ObjectHideFlags: 0
@@ -3273,6 +3286,7 @@ MonoBehaviour:
   endSpawnRate: 0.1
   obstaclePrefabs:
   - {fileID: 3620283339103595105, guid: 6bc754d257072534b980bb2e5e720c6a, type: 3}
+  coinPrefab: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
