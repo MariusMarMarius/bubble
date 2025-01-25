@@ -2,47 +2,48 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager Instance; // 单例模式，方便其他脚本访问
-    public int score = 0;   // 当前分数
-    public float difficulty = 1.0f; // 游戏难度（可以根据分数等调整）
+    public static GameManager Instance;
+    public int score = 0;
+    public float difficulty;
+    public float scoreIncreaseRate = 1.0f;
 
-    public float scoreIncreaseRate = 1.0f;  // 每秒增加的分数
-
-    private float timeSinceLastScoreIncrease = 0f;  // 距离上次增加分数的时间
+    private float timeSinceLastScoreIncrease = 0f;
 
     void Awake()
     {
-        // 如果 GameManager 实例为空，设置为当前对象
         if (Instance == null)
         {
             Instance = this;
+            DontDestroyOnLoad(gameObject); // 防止 GameManager 在切换场景时被销毁
         }
         else
         {
-            Destroy(gameObject); // 确保只有一个 GameManager 存在
+            Destroy(gameObject);
+            return;
         }
+    }
 
-        // 保持 GameManager 在场景切换时不被销毁
-        DontDestroyOnLoad(gameObject);
+    void Start()
+    {
+        // **在游戏场景加载时，从 PlayerPrefs 读取难度**
+        difficulty = PlayerPrefs.GetInt("SelectedDifficulty", 1);
+        Debug.Log("当前难度：" + difficulty);
     }
 
     void Update()
     {
-        // 根据时间增加分数
         IncreaseScoreOverTime();
-
-        // 根据分数或者其他因素来调整游戏难度
         UpdateDifficulty();
     }
 
     void IncreaseScoreOverTime()
     {
-        timeSinceLastScoreIncrease += Time.deltaTime;  // 增加时间
+        timeSinceLastScoreIncrease += Time.deltaTime;
 
-        if (timeSinceLastScoreIncrease >= 1f)  // 每秒增加一次分数
+        if (timeSinceLastScoreIncrease >= 1f)
         {
-            score += 1;  // 增加分数
-            timeSinceLastScoreIncrease = 0f;  // 重置计时
+            score += 1;
+            timeSinceLastScoreIncrease = 0f;
         }
     }
 
