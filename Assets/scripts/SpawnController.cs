@@ -1,89 +1,88 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class SpawnController : MonoBehaviour
 {
-    public Transform[] spawnPoints; // 生成点
+
+    [Header("Combination")]
+    public GameObject[] combinationPrefabs;
+
 
     [Header("BubbleSachen")]
     public GameObject bubblePrefab;
-    public float minSpawnRate = 1.0f; // 最小生成间隔
-    public float maxSpawnRate = 3.0f; // 最大生成间隔
-    public float endSpawnRate = 0.5f;
-    private float nextSpawnTime;
 
 
     [Header("PlatformSachen")]
-    public GameObject[] obstaclePrefabs; // 障碍物预制体数组
-    //public float PminSpawnRate = 1.0f; // 最小生成间隔
-    //public float PmaxSpawnRate = 3.0f; // 最大生成间隔
-    //private float PnextSpawnTime;
+    public GameObject[] obstaclePrefabs;
 
 
     [Header("Coin")]
     public GameObject coinPrefab;
 
-
-
     private int score;
 
-    void Update()
+    public Transform createNewAnchor;
+
+    
+    private void spawnNextCombination(Combination lastCombination)
+    {
+        List<GameObject> filteredCombinations = new List<GameObject>();
+        foreach (GameObject g in combinationPrefabs)
+        {
+            if (lastCombination.exitL == g.GetComponent<Combination>().entryL)
+            {
+                filteredCombinations.Add(g);
+            }
+        }
+
+        int selectedIndex = Random.Range(0, filteredCombinations.Count);
+        GameObject selectedComb = filteredCombinations[selectedIndex];
+
+        Instantiate(selectedComb, createNewAnchor.position, Quaternion.identity);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Debug.Log("ENTER" + collision.name);
+        if (collision.CompareTag("Combination"))
+        {
+            spawnNextCombination(collision.gameObject.GetComponent<Combination>());
+        }
+    }
+
+    void SpawnCombination(Transform location)
     {
 
-        // 根据分数调整障碍物生成间隔
-        float difficultyFactor = Mathf.Clamp(score / 100f, 0f, 1f); // 难度因子：分数越高，难度越大（最大为1）
-        float newMinRate = Mathf.Lerp(minSpawnRate, endSpawnRate, difficultyFactor); // 最小间隔随着分数增大而减少
-        float newMaxRate = Mathf.Lerp(maxSpawnRate, endSpawnRate, difficultyFactor); // 最大间隔随着分数增大而减少
+        int prefabIndex = UnityEngine.Random.Range(0, combinationPrefabs.Length);
+        GameObject chosenPrefab = combinationPrefabs[prefabIndex];
 
-        if (Time.time >= nextSpawnTime)
-        {
-            int r = Random.Range(0, 100);
+        GameObject newCombination = Instantiate(chosenPrefab, location.position, Quaternion.identity);
 
-            if (r <= 50)
-            {
-                SpawnBubble();
-            } 
-            else
-            {
-                //SpawnPlatform();
-            }
-
-            nextSpawnTime = Time.time + Random.Range(newMinRate, newMaxRate);
-        }
-
-
-
-
-        /*
-        if (Time.time >= PnextSpawnTime)
-        {
-            SpawnPlatform();
-
-            // 设置下次生成时间
-            PnextSpawnTime = Time.time + Random.Range(PminSpawnRate, PmaxSpawnRate);
-        }
-        */
+        newCombination.GetComponent<Combination>().Setup(0.5f);
     }
 
     void SpawnBubble()
     {
         // 随机选择一个生成点
-        int spawnIndex = Random.Range(0, spawnPoints.Length);
-        Transform chosenSpawnPoint = spawnPoints[spawnIndex];
+        //int spawnIndex = UnityEngine.Random.Range(0, spawnPoints.Length);
+        //Transform chosenSpawnPoint = spawnPoints[spawnIndex];
 
         // 生成障碍物
-        GameObject newBubble = Instantiate(bubblePrefab, chosenSpawnPoint.position, Quaternion.identity);
+        //GameObject newBubble = Instantiate(bubblePrefab, chosenSpawnPoint.position, Quaternion.identity);
         
-        newBubble.GetComponent<Bubble>().Setup(GameplayColor.GREEN, 1);
+        //newBubble.GetComponent<Bubble>().Setup(GameplayColor.WHITE, 0.5f);
     }
 
+    
+
     void SpawnPlatform()
-    {
-        int prefabIndex = Random.Range(0, obstaclePrefabs.Length);
+    {/*
+        int prefabIndex = UnityEngine.Random.Range(0, obstaclePrefabs.Length);
         GameObject chosenPrefab = obstaclePrefabs[prefabIndex];
 
-        int spawnIndex = Random.Range(0, spawnPoints.Length);
+        int spawnIndex = UnityEngine. Random.Range(0, spawnPoints.Length);
         Transform chosenSpawnPoint = spawnPoints[spawnIndex];
 
-        GameObject newPlatform = Instantiate(chosenPrefab, chosenSpawnPoint.position, Quaternion.identity);
+        GameObject newPlatform = Instantiate(chosenPrefab, chosenSpawnPoint.position, Quaternion.identity);*/
     }
 }

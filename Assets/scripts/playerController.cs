@@ -14,6 +14,8 @@ public class playerController : MonoBehaviour
 
     public GameManager gameManager;
 
+    public GameplayColor color;
+
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -40,12 +42,32 @@ public class playerController : MonoBehaviour
             rb.AddForce(movement * moveSpeed * Time.deltaTime * 2);
         }
         
-
-
         if (Input.GetKeyDown(KeyCode.Space) )
         {
             jump(jumpPower);
         }
+
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            color = GameplayColor.BLUE;
+            GetComponent<SpriteRenderer>().color = Color.blue;
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            GetComponent<SpriteRenderer>().color = Color.green;
+            color = GameplayColor.GREEN;
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            GetComponent<SpriteRenderer>().color = Color.red;
+            color = GameplayColor.ORANGE;
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            GetComponent<SpriteRenderer>().color = Color.yellow;
+            color = GameplayColor.PURPLE;
+        }
+
     }
 
     public void jump(float jumpForce)
@@ -115,11 +137,8 @@ public class playerController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-
-        Debug.Log("TRIR");
         if (collision.CompareTag("Collectable"))
         {
-            Debug.Log("DDDD");
             Destroy(collision.gameObject);
             gameManager.coinCollected();
         }

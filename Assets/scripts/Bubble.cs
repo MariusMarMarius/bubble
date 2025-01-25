@@ -1,5 +1,5 @@
 using UnityEngine;
-
+using System;
 public class Bubble : MonoBehaviour
 {
     private string spritePath = "glossy bubbles/img/"; // 图片路径
@@ -15,11 +15,9 @@ public class Bubble : MonoBehaviour
     public float[] speedOptions = { 2.0f, 5.0f, 10.0f, 20.0f }; // 固定的速度选项
     private float speed;           // 当前速度
 
-    public float destroyX = -15f;  // 超出这个位置销毁
-
     private void Start()
     {
-        speed = speedOptions[Random.Range(0, speedOptions.Length)];
+        //speed = speedOptions[UnityEngine.Random.Range(0, speedOptions.Length)];
     }
 
     private void Update()
@@ -34,10 +32,21 @@ public class Bubble : MonoBehaviour
         SetSize(s);
     }
 
-    
+
+
+    public void setRandomColor()
+    {
+        Array enumValues = GameplayColor.GetValues(typeof(GameplayColor));
+        GameplayColor c = (GameplayColor)enumValues.GetValue(UnityEngine.Random.Range(0, enumValues.Length));
+
+        AssignColor(c);
+    }
+
+
 
     void AssignColor(GameplayColor c)
     {
+        color = c;
         string fullPath = spritePath + c.ToString();
 
         Sprite newSprite = Resources.Load<Sprite>(fullPath);
@@ -61,15 +70,21 @@ public class Bubble : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            Vector2 pushDirection = (collision.transform.position - transform.position).normalized;
+            if (collision.GetComponent<playerController>().color != color || color == GameplayColor.WHITE)
+            {
+                Vector2 pushDirection = (collision.transform.position - transform.position).normalized;
 
-            collision.GetComponent<playerController>().bubbleKnock(pushDirection, 5f);
-            //new effect
+                collision.GetComponent<playerController>().bubbleKnock(pushDirection, 5f);
+
+            }
+
             SpawnSplashEffect();
             GameManager.Instance.IncreaseScore(5);
             Destroy(gameObject); // Zerstört die Bubble
         }
     }
+
+
     //Bubble splash effect
     void SpawnSplashEffect()
     {

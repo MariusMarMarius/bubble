@@ -80,9 +80,9 @@ public class GameManager : MonoBehaviour
 
 public enum GameplayColor
 {
-    NONE,
-    RED,
+    WHITE,
+    ORANGE,
     BLUE,
     GREEN,
-    YELLOW
+    PURPLE
 };
