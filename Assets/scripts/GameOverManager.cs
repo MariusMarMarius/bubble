@@ -46,6 +46,9 @@ public class GameOverManager : MonoBehaviour
             // 停止游戏，可以通过暂停游戏或直接结束游戏来实现
             //Time.timeScale = 0f;  // 停止游戏，暂停时间
             Debug.Log("game over");
+        } else
+        {
+            Destroy(other.gameObject);
         }
     }
 }
