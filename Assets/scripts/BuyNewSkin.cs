@@ -9,7 +9,6 @@ public class BuyNewSkin : MonoBehaviour
     public GameObject skin2owned;
     public GameObject skin3tobuy;
     public GameObject skin3owned;
-    public TextMeshProUGUI tipps;
     
 
     private void Start()

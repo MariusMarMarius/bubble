@@ -24,10 +24,12 @@ public class SelectFrameController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.A))
         {
             Move(-1); // 向左移动
+            
         }
         else if (Input.GetKeyDown(KeyCode.D))
         {
             Move(1); // 向右移动
+            
         }
         else if (Input.GetKeyDown(KeyCode.Return)) // 按回车键选择
         {
