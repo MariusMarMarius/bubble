@@ -7,6 +7,11 @@ public class SpawnController : MonoBehaviour
     [Header("Combination")]
     public GameObject[] combinationPrefabs;
 
+    [Header("Cloud")]
+    public GameObject cloud1;
+    public GameObject cloud2;
+    public GameObject cloud3;
+
 
     [Header("BubbleSachen")]
     public GameObject bubblePrefab;

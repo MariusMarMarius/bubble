@@ -71,11 +71,6 @@ public class GameManager : MonoBehaviour
         score += value;
     }
 
-    public void coinCollected()
-    {
-        coins++;
-        Debug.Log(coins);
-    }
 }
 
 

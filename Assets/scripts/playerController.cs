@@ -17,6 +17,8 @@ public class playerController : MonoBehaviour
 
     public GameplayColor color;
 
+    public int coins;
+
 
     float moveInput;
 
@@ -148,7 +150,7 @@ public class playerController : MonoBehaviour
         if (collision.CompareTag("Collectable"))
         {
             Destroy(collision.gameObject);
-            gameManager.coinCollected();
+            coins++;
         }
     }
 }

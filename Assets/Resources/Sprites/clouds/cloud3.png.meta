@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 7149c70b649f5b24189ee12cc8ac95c6
+guid: 2f4cfe5e4e4a6f643840b17297333070
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5238852697081684594
-    second: bub_c_1_0
+      213: 5692308257841091951
+    second: cloud3_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -51,7 +51,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 250
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: bub_c_1_0
+      name: cloud3_0
       rect:
         serializedVersion: 2
-        x: 19
-        y: 40
-        width: 326
-        height: 417
+        x: 18
+        y: 33
+        width: 196
+        height: 144
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: e8d59d78a3bdb47b0800000000000000
-      internalID: -5238852697081684594
+      spriteID: f6514ac83342ffe40800000000000000
+      internalID: 5692308257841091951
       vertices: []
       indices: 
       edges: []
@@ -134,8 +134,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      bub_c_1_0: -5238852697081684594
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5089147484073556303}
   - component: {fileID: 8354254704917619845}
   - component: {fileID: 5922485311009377513}
-  - component: {fileID: 3784276452673564922}
+  - component: {fileID: 1321708985910452981}
   m_Layer: 6
   m_Name: player
   m_TagString: Player
@@ -158,7 +158,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!70 &3784276452673564922
+--- !u!70 &1321708985910452981
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -193,5 +193,5 @@ CapsuleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Size: {x: 1.63, y: 2.085}
+  m_Size: {x: 1.304, y: 1.668}
   m_Direction: 0
