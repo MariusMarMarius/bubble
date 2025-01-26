@@ -1,19 +1,16 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System;
 public class Bubble : MonoBehaviour
 {
-    private string spritePath = "glossy bubbles/img/"; // 图片路径
-    public int nowBubble;
+    private string spritePath = "Sprites/bubble/";
 
-    public GameplayColor color; 
+    public GameplayColor color;
 
-    private CircleCollider2D circleCollider;
-
+    private Animator ani;
 
 
-
-    public float[] speedOptions = { 2.0f, 5.0f, 10.0f, 20.0f }; // 固定的速度选项
-    private float speed;           // 当前速度
+    public float[] speedOptions = { 2.0f, 5.0f, 10.0f, 20.0f };
+    private float speed;
 
     private void Start()
     {
@@ -22,24 +19,34 @@ public class Bubble : MonoBehaviour
 
     private void Update()
     {
-        transform.position += Vector3.left * speed * Time.deltaTime;
+        //transform.position += Vector3.left * speed * Time.deltaTime;
     }
 
     public void Setup(GameplayColor c, float s)
     {
-        circleCollider = GetComponent<CircleCollider2D>();
+        
         AssignColor(c);
         SetSize(s);
     }
 
-
+    public void setRandomSize()
+    {
+        float size = UnityEngine.Random.Range(1.25f, 1.75f);
+        SetSize(size);
+    }
 
     public void setRandomColor()
     {
         Array enumValues = GameplayColor.GetValues(typeof(GameplayColor));
         GameplayColor c = (GameplayColor)enumValues.GetValue(UnityEngine.Random.Range(0, enumValues.Length));
 
+
         AssignColor(c);
+    }
+
+    public void setWhiteColor()
+    {
+        AssignColor(GameplayColor.WHITE);
     }
 
 
@@ -47,7 +54,28 @@ public class Bubble : MonoBehaviour
     void AssignColor(GameplayColor c)
     {
         color = c;
+        ani = GetComponent<Animator>();
+
+
+        switch (color)
+        {
+            case GameplayColor.WHITE:
+                
+                break;
+            case GameplayColor.ORANGE:
+                ani.SetTrigger("orangeTrigger");
+                break;
+            case GameplayColor.GREEN:
+                ani.SetTrigger("greenTrigger");
+                break;
+            case GameplayColor.PINK:
+                ani.SetTrigger("pinkTrigger");
+                break;
+        }
+
+        /*
         string fullPath = spritePath + c.ToString();
+
 
         Sprite newSprite = Resources.Load<Sprite>(fullPath);
         if (newSprite != null)
@@ -56,29 +84,30 @@ public class Bubble : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning($"Obstacle: 图片加载失败！路径: {fullPath}");
+            Debug.Log("DIDNT FIND IMAGE");
         }
+        */
     }
 
     void SetSize(float size)
     {
-        transform.localScale = new Vector2(size, size); // 设置随机缩放
-        circleCollider.radius = 1.22f;
+        transform.localScale = new Vector2(size, size);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
-            if (collision.GetComponent<playerController>().color != color || color == GameplayColor.WHITE)
+            if (collision.GetComponent<playerController>().color == color || color == GameplayColor.WHITE)
             {
-                Vector2 pushDirection = (collision.transform.position - transform.position).normalized;
+                Vector2 pushDirection = (collision.transform.position - transform.position);
+                pushDirection.Normalize();
 
                 collision.GetComponent<playerController>().bubbleKnock(pushDirection, 5f);
 
             }
 
-            SpawnSplashEffect();
+            //SpawnSplashEffect();
             GameManager.Instance.IncreaseScore(5);
             Destroy(gameObject); // Zerstört die Bubble
         }
@@ -86,11 +115,11 @@ public class Bubble : MonoBehaviour
 
 
     //Bubble splash effect
+    /*
     void SpawnSplashEffect()
     {
-        // 从 Resources 目录加载图片并创建 Sprite
         Sprite splashSprite = Resources.Load<Sprite>("splash");
-        AudioClip splashSound = Resources.Load<AudioClip>("voice/bubbleSplash"); // 加载音效
+        AudioClip splashSound = Resources.Load<AudioClip>("voice/bubbleSplash");
 
         if (splashSprite != null)
         {
@@ -98,10 +127,10 @@ public class Bubble : MonoBehaviour
             SpriteRenderer renderer = splashEffect.AddComponent<SpriteRenderer>();
             renderer.sprite = splashSprite;
 
-            splashEffect.transform.position = transform.position; // 设置位置
-            splashEffect.transform.localScale = transform.localScale / 2; // 缩放
+            splashEffect.transform.position = transform.position;
+            splashEffect.transform.localScale = transform.localScale / 2;
 
-            // 添加音频组件并播放音效
+
             AudioSource audioSource = splashEffect.AddComponent<AudioSource>();
             if (splashSound != null)
             {
@@ -114,14 +143,18 @@ public class Bubble : MonoBehaviour
                 Debug.LogWarning("Splash sound not found in Resources/voice folder!");
             }
 
-            Destroy(splashEffect, 2f); // 2 秒后销毁
+            Destroy(splashEffect, 2f);
         }
         else
         {
             Debug.LogWarning("Splash sprite not found in Resources folder!");
         }
-    }
+    }*/
+}
 
-
-
+[System.Serializable]
+public class BubbleWhiteOrRandom
+{
+    public Bubble bubble;
+    public bool white;
 }

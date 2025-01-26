@@ -44,7 +44,6 @@ public class GameOverManager : MonoBehaviour
             {
                 audioSource.clip = dieSound;
                 audioSource.Play();
-                Debug.Log("die Voice played");
             }
             else
             {

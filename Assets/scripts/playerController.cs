@@ -3,6 +3,7 @@ using UnityEngine;
 public class playerController : MonoBehaviour
 {
     private Rigidbody2D rb;
+    private Animator ani;
 
     public float moveSpeed = 5f;
     public float jumpPower;
@@ -17,23 +18,38 @@ public class playerController : MonoBehaviour
     public GameplayColor color;
 
 
+    float moveInput;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        ani = GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
         inputCheck();
+
+        if (moveInput < 0)
+        {
+            Vector3 localScale = transform.localScale;
+            localScale.x = -1; 
+            transform.localScale  = localScale;
+        }
+        else if (moveInput > 0)
+        {
+            Vector3 localScale = transform.localScale;
+            localScale.x = 1;
+            transform.localScale = localScale;
+        }
     }
 
 
     void inputCheck()
     {
-        float moveInput = Input.GetAxis("Horizontal");
+        moveInput = Input.GetAxis("Horizontal");
         Vector2 movement = new Vector2(moveInput, 0);
 
         
@@ -49,25 +65,19 @@ public class playerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            color = GameplayColor.BLUE;
-            GetComponent<SpriteRenderer>().color = Color.blue;
+            color = GameplayColor.PINK;
+            ani.SetTrigger("pinkTrigger");
         }
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            GetComponent<SpriteRenderer>().color = Color.green;
             color = GameplayColor.GREEN;
+            ani.SetTrigger("greenTrigger");
         }
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
-            GetComponent<SpriteRenderer>().color = Color.red;
             color = GameplayColor.ORANGE;
+            ani.SetTrigger("orangeTrigger");
         }
-        if (Input.GetKeyDown(KeyCode.Alpha4))
-        {
-            GetComponent<SpriteRenderer>().color = Color.yellow;
-            color = GameplayColor.PURPLE;
-        }
-
     }
 
     public void jump(float jumpForce)
@@ -86,7 +96,6 @@ public class playerController : MonoBehaviour
         {
             audioSource.clip = jumpSound;
             audioSource.Play();
-            Debug.Log("Jump Voice played");
         }
         else
         {
@@ -118,7 +127,6 @@ public class playerController : MonoBehaviour
             {
                 audioSource.clip = landenSound;
                 audioSource.Play();
-                Debug.Log("Landen Voice played");
             }
             else
             {

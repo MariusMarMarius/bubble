@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour
 
     public int coins;
 
+    public int speed;
+
     void Awake()
     {
         if (Instance == null)
@@ -29,7 +31,6 @@ public class GameManager : MonoBehaviour
     {
         // **在游戏场景加载时，从 PlayerPrefs 读取难度**
         difficulty = PlayerPrefs.GetInt("SelectedDifficulty", 1);
-        Debug.Log("当前难度：" + difficulty);
     }
 
     void Update()
@@ -82,7 +83,6 @@ public enum GameplayColor
 {
     WHITE,
     ORANGE,
-    BLUE,
     GREEN,
-    PURPLE
+    PINK
 };

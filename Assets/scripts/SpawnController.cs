@@ -22,7 +22,6 @@ public class SpawnController : MonoBehaviour
     private int score;
 
     public Transform createNewAnchor;
-
     
     private void spawnNextCombination(Combination lastCombination)
     {
@@ -38,27 +37,16 @@ public class SpawnController : MonoBehaviour
         int selectedIndex = Random.Range(0, filteredCombinations.Count);
         GameObject selectedComb = filteredCombinations[selectedIndex];
 
-        Instantiate(selectedComb, createNewAnchor.position, Quaternion.identity);
+        GameObject newCombination = Instantiate(selectedComb, new Vector2(createNewAnchor.position.x, selectedComb.transform.position.y), Quaternion.identity);
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("ENTER" + collision.name);
         if (collision.CompareTag("Combination"))
         {
-            spawnNextCombination(collision.gameObject.GetComponent<Combination>());
+            spawnNextCombination(collision.gameObject.GetComponentInParent<Combination>());
         }
-    }
-
-    void SpawnCombination(Transform location)
-    {
-
-        int prefabIndex = UnityEngine.Random.Range(0, combinationPrefabs.Length);
-        GameObject chosenPrefab = combinationPrefabs[prefabIndex];
-
-        GameObject newCombination = Instantiate(chosenPrefab, location.position, Quaternion.identity);
-
-        newCombination.GetComponent<Combination>().Setup(0.5f);
     }
 
     void SpawnBubble()
