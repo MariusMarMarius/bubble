@@ -9,6 +9,7 @@ TagManager:
   - GameBoard
   - Collectable
   - Combination
+  - Cloud
   layers:
   - Default
   - TransparentFX
@@ -45,6 +46,9 @@ TagManager:
   m_SortingLayers:
   - name: BACKGROUND
     uniqueID: 2203901637
+    locked: 0
+  - name: CLOUD
+    uniqueID: 612326729
     locked: 0
   - name: Default
     uniqueID: 0
