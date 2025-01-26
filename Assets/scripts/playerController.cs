@@ -33,7 +33,18 @@ public class playerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         ani = GetComponent<Animator>();
 
+        
+    }
+
+    
+
+    public void uwuSkin()
+    {
         ani.runtimeAnimatorController = uwu;
+    }
+    public void classicSkin()
+    {
+        ani.runtimeAnimatorController = classic;
     }
 
     // Update is called once per frame
