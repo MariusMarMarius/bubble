@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
 
     public int coins;
 
-    public int speed;
+    public float speed;
 
     void Awake()
     {
