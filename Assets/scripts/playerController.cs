@@ -22,11 +22,18 @@ public class playerController : MonoBehaviour
 
     float moveInput;
 
+
+
+    public RuntimeAnimatorController classic;
+    public RuntimeAnimatorController uwu;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         ani = GetComponent<Animator>();
+
+        ani.runtimeAnimatorController = uwu;
     }
 
     // Update is called once per frame

@@ -13,6 +13,7 @@ public class Combination : MonoBehaviour
 
     public Transform leaveAnchor;
 
+
     private void Start()
     {
         foreach (SpriteRenderer r in grounds)
