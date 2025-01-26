@@ -12,6 +12,10 @@ public class StartMenuManager : MonoBehaviour
         // «–ªªµΩ”Œœ∑≥°æ∞
         SceneManager.LoadScene("newscene");
     }
+    public void GoShop()
+    {
+        SceneManager.LoadScene("shop");
+    }
 
     public void ExitGame()
     {
