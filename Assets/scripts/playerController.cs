@@ -150,6 +150,8 @@ public class playerController : MonoBehaviour
         if (collision.CompareTag("Collectable"))
         {
             Destroy(collision.gameObject);
+            PlayerPrefs.SetInt("Coins", PlayerPrefs.GetInt("coins") + 1);
+            
             coins++;
         }
     }
