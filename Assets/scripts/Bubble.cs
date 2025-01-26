@@ -31,7 +31,7 @@ public class Bubble : MonoBehaviour
 
     public void setRandomSize()
     {
-        float size = UnityEngine.Random.Range(1.25f, 1.75f);
+        float size = UnityEngine.Random.Range(1.5f, 2f);
         SetSize(size);
     }
 
