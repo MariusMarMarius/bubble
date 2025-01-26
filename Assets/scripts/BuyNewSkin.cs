@@ -3,12 +3,12 @@ using UnityEngine;
 
 public class BuyNewSkin : MonoBehaviour
 {
-    GameObject skin1tobuy;
-    GameObject skin1owned;
-    GameObject skin2tobuy;
-    GameObject skin2owned;
-    GameObject skin3tobuy;
-    GameObject skin3owned;
+    public GameObject skin1tobuy;
+    public GameObject skin1owned;
+    public GameObject skin2tobuy;
+    public GameObject skin2owned;
+    public GameObject skin3tobuy;
+    public GameObject skin3owned;
     public TextMeshProUGUI tipps;
     
 
@@ -22,8 +22,19 @@ public class BuyNewSkin : MonoBehaviour
         skin3owned.SetActive(false);
 
     }
-    void buy1Skin()
+    public void buy1Skin()
     {
-
+        skin1owned.SetActive(true);
+        skin1tobuy.SetActive(false);
+    }
+    public void buy2Skin()
+    {
+        skin2owned.SetActive(true);
+        skin2tobuy.SetActive(false);
+    }
+    public void buy3Skin()
+    {
+        skin3owned.SetActive(true);
+        skin3tobuy.SetActive(false);
     }
 }
