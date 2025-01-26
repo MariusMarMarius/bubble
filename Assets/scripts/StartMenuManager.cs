@@ -8,7 +8,7 @@ public class StartMenuManager : MonoBehaviour
         // **保存难度到 PlayerPrefs**
         //PlayerPrefs.SetInt("SelectedDifficulty", difficulty);
         //PlayerPrefs.Save();
-        DontDestroyOnLoad(gameObject);
+        
         // 切换到游戏场景
         SceneManager.LoadScene("newscene");
         PlayerPrefs.SetInt("Coins",0);
