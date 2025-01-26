@@ -11,6 +11,7 @@ public class StartMenuManager : MonoBehaviour
 
         // «–ªªµΩ”Œœ∑≥°æ∞
         SceneManager.LoadScene("newscene");
+        PlayerPrefs.SetInt("Coins",0);
     }
     public void GoShop()
     {
