@@ -3159,7 +3159,7 @@ MonoBehaviour:
   difficulty: 1
   scoreIncreaseRate: 1
   coins: 0
-  speed: 2
+  speed: 2.5
 --- !u!4 &2111104276
 Transform:
   m_ObjectHideFlags: 0
