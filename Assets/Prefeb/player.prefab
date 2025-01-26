@@ -136,6 +136,9 @@ MonoBehaviour:
   canDoubleJump: 1
   gameManager: {fileID: 0}
   color: 0
+  coins: 0
+  classic: {fileID: 9100000, guid: febdf101145728341a9528355bec11a8, type: 2}
+  uwu: {fileID: 9100000, guid: 8a5b5a247af14c44e8b0ac0cdc845a38, type: 2}
 --- !u!95 &5922485311009377513
 Animator:
   serializedVersion: 7
