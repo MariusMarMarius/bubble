@@ -8,9 +8,7 @@ public class SpawnController : MonoBehaviour
     public GameObject[] combinationPrefabs;
 
     [Header("Cloud")]
-    public GameObject cloud1;
-    public GameObject cloud2;
-    public GameObject cloud3;
+    public GameObject[] clouds;
 
 
     [Header("BubbleSachen")]
@@ -46,11 +44,24 @@ public class SpawnController : MonoBehaviour
 
     }
 
+    private void spawnNextCloud(GameObject lastCloud)
+    {
+        int selectedIndex = Random.Range(0, 3);
+        GameObject selectedCloud = clouds[selectedIndex];
+
+        Instantiate(selectedCloud, new Vector2(createNewAnchor.position.x, lastCloud.transform.position.y), Quaternion.identity);
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Combination"))
         {
             spawnNextCombination(collision.gameObject.GetComponentInParent<Combination>());
+        }
+        if (collision.CompareTag("Cloud"))
+        {
+            Debug.Log("CLOUDCLOUD");
+            spawnNextCloud(collision.gameObject);
         }
     }
 
