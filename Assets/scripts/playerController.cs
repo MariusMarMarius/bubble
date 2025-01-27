@@ -43,7 +43,6 @@ public class playerController : MonoBehaviour
             case 2: stareSkin(); break;
             default: break;
         }
-        stareSkin();
     }
 
     
