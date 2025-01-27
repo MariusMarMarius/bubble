@@ -11,7 +11,18 @@ public class SelectFrameController : MonoBehaviour
 
     void Start()
     {
-        // 初始化时将选择框固定到第一个位置
+        // 确保数组不为空，并设置0号皮肤默认解锁
+        if (isSkinAvailable == null || isSkinAvailable.Length < positions.Length)
+        {
+            isSkinAvailable = new bool[positions.Length]; // 初始化数组
+
+        }
+
+        isSkinAvailable[0] = true; // 0号皮肤默认解锁
+        isSkinAvailable[1] = PlayerPrefs.GetInt("Skin1Owned", 0) == 1;
+        isSkinAvailable[2] = PlayerPrefs.GetInt("Skin2Owned", 0) == 1;
+
+        // 初始化选择框到第一个位置
         if (positions.Length > 0)
         {
             currentIndex = 0;
@@ -24,17 +35,13 @@ public class SelectFrameController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.A))
         {
             Move(-1); // 向左移动
-            
         }
         else if (Input.GetKeyDown(KeyCode.D))
         {
             Move(1); // 向右移动
-            
         }
-        else if (Input.GetKeyDown(KeyCode.Return)) // 按回车键选择
-        {
-            SelectSkin();
-        }
+        isSkinAvailable[1] = PlayerPrefs.GetInt("Skin1Owned", 0) == 1;
+        isSkinAvailable[2] = PlayerPrefs.GetInt("Skin2Owned", 0) == 1;
     }
 
     void Move(int direction)
@@ -51,22 +58,24 @@ public class SelectFrameController : MonoBehaviour
 
     void UpdatePosition()
     {
-        // 将选择框移动到当前索引位置
+        // 移动选择框
         selectFrame.anchoredPosition = positions[currentIndex];
+
+        // **自动选择皮肤**
+        SelectSkin();
     }
 
     void SelectSkin()
     {
-        if (isSkinAvailable.Length > currentIndex && isSkinAvailable[currentIndex])
+        if (isSkinAvailable != null && isSkinAvailable.Length > currentIndex && isSkinAvailable[currentIndex])
         {
-            Debug.Log("皮肤已解锁，进入新场景");
-            PlayerPrefs.SetInt("SelectedSkin", currentIndex); // 存储选择的皮肤索引
-            SceneManager.LoadScene("NewScene"); // 切换到新场景
+            Debug.Log("当前选中皮肤：" + currentIndex);
+            PlayerPrefs.SetInt("SelectedSkin", currentIndex); // 存储皮肤索引
+            PlayerPrefs.Save(); // 确保数据写入
         }
         else
         {
-            Debug.Log("皮肤未解锁");
+            Debug.Log("当前皮肤未解锁");
         }
     }
 }
-

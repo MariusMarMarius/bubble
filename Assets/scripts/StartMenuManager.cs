@@ -3,6 +3,7 @@ using UnityEngine.SceneManagement;
 
 public class StartMenuManager : MonoBehaviour
 {
+    
     public void StartGame()
     {
         // **保存难度到 PlayerPrefs**
@@ -22,4 +23,13 @@ public class StartMenuManager : MonoBehaviour
     {
         Application.Quit();
     }
+    public void ResetAllPlayerPrefs()
+    {
+        PlayerPrefs.DeleteAll(); // 清除所有数据
+        PlayerPrefs.SetInt("Coins", 100); // 重新设定初始金币
+        PlayerPrefs.SetInt("Skin1Owned", 0);
+        PlayerPrefs.SetInt("Skin2Owned", 0);
+        PlayerPrefs.Save(); // 确保数据写入
+    }
+
 }
