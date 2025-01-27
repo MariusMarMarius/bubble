@@ -24,7 +24,7 @@ public class Bubble : MonoBehaviour
 
     public void Setup(GameplayColor c, float s)
     {
-        
+
         AssignColor(c);
         SetSize(s);
     }
@@ -60,7 +60,7 @@ public class Bubble : MonoBehaviour
         switch (color)
         {
             case GameplayColor.WHITE:
-                
+
                 break;
             case GameplayColor.ORANGE:
                 ani.SetTrigger("orangeTrigger");
@@ -109,13 +109,19 @@ public class Bubble : MonoBehaviour
 
             //SpawnSplashEffect();
             GameManager.Instance.IncreaseScore(5);
+
+            AudioClip splashSound = Resources.Load<AudioClip>("voice/bubbleSplash");
+            AudioSource audioSource = collision.gameObject.AddComponent<AudioSource>();
+            audioSource.clip = splashSound;
+            audioSource.Play();
+
             Destroy(gameObject); // Zerstört die Bubble
         }
     }
 
+        //Bubble splash effect
 
-    //Bubble splash effect
-    /*
+        /*
     void SpawnSplashEffect()
     {
         Sprite splashSprite = Resources.Load<Sprite>("splash");
@@ -149,7 +155,7 @@ public class Bubble : MonoBehaviour
         {
             Debug.LogWarning("Splash sprite not found in Resources folder!");
         }
-    }*/
+    }    */
 }
 
 [System.Serializable]

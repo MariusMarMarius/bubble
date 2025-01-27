@@ -26,6 +26,7 @@ public class playerController : MonoBehaviour
 
     public RuntimeAnimatorController classic;
     public RuntimeAnimatorController uwu;
+    public RuntimeAnimatorController stare;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -33,18 +34,32 @@ public class playerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         ani = GetComponent<Animator>();
 
-        
+
+        Debug.Log(PlayerPrefs.GetInt("SelectedSkin", 0));
+        switch (PlayerPrefs.GetInt("SelectedSkin", 0))
+        {
+            case 0: classicSkin(); break;
+            case 1: uwuSkin(); break;
+            case 2: stareSkin(); break;
+            default: break;
+        }
+        stareSkin();
     }
 
     
 
+    
+    public void classicSkin()
+    {
+        ani.runtimeAnimatorController = classic;
+    }
     public void uwuSkin()
     {
         ani.runtimeAnimatorController = uwu;
     }
-    public void classicSkin()
+    public void stareSkin()
     {
-        ani.runtimeAnimatorController = classic;
+        ani.runtimeAnimatorController = stare;
     }
 
     // Update is called once per frame
@@ -97,6 +112,11 @@ public class playerController : MonoBehaviour
         {
             color = GameplayColor.ORANGE;
             ani.SetTrigger("orangeTrigger");
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            classicSkin();
         }
     }
 
@@ -169,7 +189,6 @@ public class playerController : MonoBehaviour
         {
             Destroy(collision.gameObject);
             PlayerPrefs.SetInt("Coins", PlayerPrefs.GetInt("Coins") + 1);
-            Debug.Log("now coin is" + PlayerPrefs.GetInt("Coins"));
             
             coins++;
         }

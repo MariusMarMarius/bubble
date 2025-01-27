@@ -60,7 +60,6 @@ public class SpawnController : MonoBehaviour
         }
         if (collision.CompareTag("Cloud"))
         {
-            Debug.Log("CLOUDCLOUD");
             spawnNextCloud(collision.gameObject);
         }
     }

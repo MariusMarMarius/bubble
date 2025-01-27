@@ -18,14 +18,11 @@ public class Combination : MonoBehaviour
     {
         foreach (SpriteRenderer r in grounds)
         {
-            Debug.Log("findingGroundT");
             if (Random.Range(0, 100) <= 50)
             {
-                Debug.Log("1");
                 r.sprite = ground1;
             } else
             {
-                Debug.Log("2");
                 r.sprite = ground2;
             }
         }
